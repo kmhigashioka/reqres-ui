@@ -1,0 +1,60 @@
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import { jsx } from '@emotion/react'
+
+function Table({ children }) {
+  return <table css={{
+    borderCollapse: 'collapse',
+    borderSpacing: 0,
+  }}>{children}</table>;
+}
+
+function THead({ children }) {
+  return <thead>{children}</thead>;
+}
+
+function TBody({ children }) {
+  return <tbody>{children}</tbody>;
+}
+
+function Tr({ children }) {
+  return (
+    <tr
+      css={{
+        '&:nth-of-type(2n)': {
+          background: '#f0f0f0',
+        },
+        '&:nth-of-type(2n+1)': {
+          background: '#ffffff',
+        },
+      }}
+    >{children}</tr>
+  );
+}
+
+function Th({ children }) {
+  return (
+    <th
+      css={{
+        background: '#4d4d4d',
+        border: '1px solid #e9e9e9',
+        color: '#ffffff',
+        fontWeight: 'normal',
+        padding: '8px 24px',
+        position: 'sticky',
+        top: 0,
+      }}
+    >{children}</th>
+  );
+}
+
+function Td({ children }) {
+  return <td css={{
+    background: 'inherit',
+    border: '1px solid #e9e9e9',
+    color: '#00994d',
+    padding: '8px 24px',
+  }}>{children}</td>
+}
+
+export { Table, THead, TBody, Tr, Th, Td };
