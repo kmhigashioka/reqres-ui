@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from '@emotion/react';
-import { Button } from '../Button';
+import { Button } from './Button';
 
 function Pagination({ onPaginate, pageNumber: activePageNumber, totalPages }) {
   function handlePaginate(goToPageNumber) {
