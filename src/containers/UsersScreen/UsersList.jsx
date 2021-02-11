@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Pagination } from '../../components/Pagination';
 import UserDialog from './UserDialog';
 
 function UsersList({ users, activePageNumber, handlePaginate, totalPages }) {
@@ -39,18 +40,7 @@ function UsersList({ users, activePageNumber, handlePaginate, totalPages }) {
           ))}
         </tbody>
       </table>
-      <div>
-        <button disabled={activePageNumber === 1} type="button" onClick={handlePaginate(1)}>{'<<'}</button>
-        <button disabled={activePageNumber === 1} type="button" onClick={handlePaginate(activePageNumber - 1)}>{'<'}</button>
-        {Array.from({ length: totalPages }).map((_, index) => {
-          const pageNumber = index + 1;
-          return (
-            <button type="button" onClick={handlePaginate(pageNumber)} key={pageNumber}>{pageNumber}</button>
-          );
-        })}
-        <button disabled={activePageNumber === totalPages} type="button" onClick={handlePaginate(activePageNumber + 1)}>{'>'}</button>
-        <button disabled={activePageNumber === totalPages} type="button" onClick={handlePaginate(totalPages)}>{'>>'}</button>
-      </div>
+      <Pagination onPaginate={handlePaginate} pageNumber={activePageNumber} totalPages={totalPages} />
       {selectedUser
         ? <UserDialog isOpen={isUserDialogOpen} onDismiss={handleDismiss} user={selectedUser} />
         : null}

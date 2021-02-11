@@ -16,9 +16,7 @@ function UsersScreen() {
   }
 
   function handlePaginate(goToPageNumber) {
-    return function () {
-      setActivePageNumber(goToPageNumber);
-    };
+    setActivePageNumber(goToPageNumber);
   }
 
   if (isSuccess) {
