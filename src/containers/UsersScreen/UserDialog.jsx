@@ -1,6 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from '@emotion/react';
+import { Button } from '../../components/Button';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '../../components/Dialog';
 
 const labelSpan = {
@@ -24,7 +25,7 @@ function UserDialog(props) {
       </DialogTitle>
       <DialogContent>
         <div css={{ textAlign: 'center', marginBottom: '20px' }}>
-          <img css={{ height: '100px', width: '100px' }} alt="User avatar" src={user.avatar} />
+          <img css={{ height: '100px' }} alt="User avatar" src={user.avatar} />
         </div>
         <div>
           <span css={labelSpan}>Id:</span>
@@ -44,7 +45,7 @@ function UserDialog(props) {
         </div>
       </DialogContent>
       <DialogActions>
-        <button type="button" onClick={onDismiss}>Close</button>
+        <Button type="button" onClick={onDismiss}>Close</Button>
       </DialogActions>
     </Dialog>
   );
