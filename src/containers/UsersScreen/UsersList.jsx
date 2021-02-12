@@ -37,8 +37,6 @@ function UsersList() {
     setActivePageNumber(goToPageNumber);
   }
 
-  console.log({ users, isLoading, isError, isSuccess, usersResponse });
-
   const successView = isSuccess ? (
     <Table css={{ width: '100%' }}>
       <THead>
@@ -65,7 +63,7 @@ function UsersList() {
   ) : null;
 
   const errorView = isError ? (
-    <div>There is an error: ${error.message}</div>
+    <div role="alert">There is an error: {error.message}</div>
   ) : null;
 
   const loadingView = isLoading ? 'Loading...' : null;
