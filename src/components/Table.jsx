@@ -2,21 +2,35 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 
-function Table({ children }) {
-  return <div>{children}</div>;
+function Table({ children, className }) {
+  return (
+    <table
+      className={className}
+      css={[
+        {
+          borderCollapse: 'separate',
+          borderSpacing: 0,
+          border: '1px solid #e9e9e9',
+        },
+      ]}
+    >
+      {children}
+    </table>
+  );
 }
 
 function THead({ children }) {
-  return <div>{children}</div>;
+  return <thead>{children}</thead>;
 }
 
 function TBody({ children }) {
-  return <div>{children}</div>;
+  return <tbody>{children}</tbody>;
 }
 
-function Tr({ children }) {
+function Tr({ children, className, ...props }) {
   return (
-    <div
+    <tr
+      className={className}
       css={{
         '&:nth-of-type(2n)': {
           background: '#f0f0f0',
@@ -24,39 +38,47 @@ function Tr({ children }) {
         '&:nth-of-type(2n+1)': {
           background: '#ffffff',
         },
-        display: 'flex',
       }}
-    >{children}</div>
+      {...props}
+    >{children}</tr>
   );
 }
 
-function Th({ children }) {
+function Th({ children, className }) {
   return (
-    <div
-      css={{
-        background: '#4d4d4d',
-        border: '1px solid #e9e9e9',
-        color: '#ffffff',
-        fontWeight: 'normal',
-        padding: '8px 24px',
-        position: 'sticky',
-        top: 0,
-      }}
-    >{children}</div>
+    <th
+      className={className}
+      css={[
+        {
+          background: '#4d4d4d',
+          borderRight: '1px solid #e9e9e9',
+          borderBottom: '1px solid #e9e9e9',
+          color: '#ffffff',
+          fontWeight: 'normal',
+          padding: '4px 24px',
+          whiteSpace: 'nowrap',
+        },
+      ]}
+    >{children}</th>
   );
 }
 
-function ScrollableTh({ children }) {
-  return <div css={{ display: 'flex', overflow: 'auto' }}>{children}</div>;
+function Td({ children, className }) {
+  return (
+    <td
+      className={className}
+      css={{
+        background: 'inherit',
+        borderRight: '1px solid #e9e9e9',
+        borderBottom: '1px solid #e9e9e9',
+        color: '#00994d',
+        padding: '4px 24px',
+        textAlign: 'center',
+      }}
+    >
+      {children}
+    </td>
+  );
 }
 
-function Td({ children }) {
-  return <div css={{
-    background: 'inherit',
-    border: '1px solid #e9e9e9',
-    color: '#00994d',
-    padding: '8px 24px',
-  }}>{children}</div>
-}
-
-export { Table, THead, TBody, Tr, Th, Td, ScrollableTh };
+export { Table, THead, TBody, Tr, Th, Td };
