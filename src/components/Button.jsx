@@ -20,6 +20,7 @@ const defaultStyle = {
   cursor: 'pointer',
   '&[disabled]': {
     cursor: 'unset',
+    opacity: 0.4,
   },
 };
 
