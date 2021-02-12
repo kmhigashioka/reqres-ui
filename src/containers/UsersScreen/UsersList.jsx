@@ -1,5 +1,10 @@
+/** @jsxRuntime classic */
+/** @jsx jsx */
 import * as React from 'react';
+import { jsx } from '@emotion/react';
+import { Pagination } from '../../components/Pagination';
 import UserDialog from './UserDialog';
+import { Table, THead, TBody, Tr, Th, Td } from '../../components/Table';
 
 function UsersList({ users, activePageNumber, handlePaginate, totalPages }) {
   const [isUserDialogOpen, setIsUserDialogOpen] = React.useState(false);
@@ -19,37 +24,38 @@ function UsersList({ users, activePageNumber, handlePaginate, totalPages }) {
 
   return (
     <div>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>FIRST NAME</th>
-            <th>LAST NAME</th>
-            <th>EMAIL</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map(user => (
-            <tr key={user.id} onClick={handleUserClick(user.id)}>
-              <td>{user.id}</td>
-              <td>{user.first_name}</td>
-              <td>{user.last_name}</td>
-              <td>{user.email}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <div>
-        <button disabled={activePageNumber === 1} type="button" onClick={handlePaginate(1)}>{'<<'}</button>
-        <button disabled={activePageNumber === 1} type="button" onClick={handlePaginate(activePageNumber - 1)}>{'<'}</button>
-        {Array.from({ length: totalPages }).map((_, index) => {
-          const pageNumber = index + 1;
-          return (
-            <button type="button" onClick={handlePaginate(pageNumber)} key={pageNumber}>{pageNumber}</button>
-          );
-        })}
-        <button disabled={activePageNumber === totalPages} type="button" onClick={handlePaginate(activePageNumber + 1)}>{'>'}</button>
-        <button disabled={activePageNumber === totalPages} type="button" onClick={handlePaginate(totalPages)}>{'>>'}</button>
+      <div css={{ width: '250px', height: '150px' }}>
+        <div css={{
+          display: 'flex',
+          flexDirection: 'column',
+          height: 'calc(100% - 21px)',
+          width: '100%',
+          overflowX: 'auto',
+        }}>
+          <Table css={{ width: '100%' }}>
+            <THead>
+              <Tr>
+                <Th css={{ position: 'sticky', top: 0, left: 0, zIndex: 3 }}>
+                  ID
+                </Th>
+                <Th css={{ position: 'sticky', top: 0, zIndex: 2 }}>FIRST NAME</Th>
+                <Th css={{ position: 'sticky', top: 0, zIndex: 2 }}>LAST NAME</Th>
+                <Th css={{ position: 'sticky', top: 0, zIndex: 2 }}>EMAIL</Th>
+              </Tr>
+            </THead>
+            <TBody>
+              {users.map(user => (
+                <Tr key={user.id} onClick={handleUserClick(user.id)} css={{ cursor: 'pointer' }}>
+                  <Td css={{ position: 'sticky', left: 0 }}>{user.id}</Td>
+                  <Td>{user.first_name}</Td>
+                  <Td>{user.last_name}</Td>
+                  <Td>{`${user.email}`}</Td>
+                </Tr>
+              ))}
+            </TBody>
+          </Table>
+        </div>
+        <Pagination onPaginate={handlePaginate} pageNumber={activePageNumber} totalPages={totalPages} />
       </div>
       {selectedUser
         ? <UserDialog isOpen={isUserDialogOpen} onDismiss={handleDismiss} user={selectedUser} />

@@ -1,24 +1,53 @@
-import Dialog from '@reach/dialog';
-import '@reach/dialog/styles.css';
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import { jsx } from '@emotion/react';
+import { Button } from '../../components/Button';
+import { Dialog, DialogActions, DialogContent, DialogTitle } from '../../components/Dialog';
+import * as colors from '../../styles/colors';
+
+const labelSpan = {
+  display: 'inline-block',
+  marginRight: '10px',
+  minWidth: '100px',
+  textAlign: 'right',
+};
+
+const labelSpanValue = {
+  color: colors.primary,
+};
 
 function UserDialog(props) {
   const { onDismiss, user } = props;
 
   return (
     <Dialog {...props} aria-label="User Modal">
-      <div>
-        <p>Profile</p>
-      </div>
-      <div>
-        <img alt="User avatar" src={user.avatar} />
-        <p>Id:</p><p>{user.id}</p>
-        <p>First Name:</p><p>{user.first_name}</p>
-        <p>Last Name:</p><p>{user.last_name}</p>
-        <p>Email:</p><p>{user.email}</p>
-      </div>
-      <div>
-        <button type="button" onClick={onDismiss}>Close</button>
-      </div>
+      <DialogTitle>
+        Profile
+      </DialogTitle>
+      <DialogContent>
+        <div css={{ textAlign: 'center', marginBottom: '20px' }}>
+          <img css={{ height: '100px' }} alt="User avatar" src={user.avatar} />
+        </div>
+        <div>
+          <span css={labelSpan}>Id:</span>
+          <span css={labelSpanValue}>{user.id}</span>
+        </div>
+        <div>
+          <span css={labelSpan}>First Name:</span>
+          <span css={labelSpanValue}>{user.first_name}</span>
+        </div>
+        <div>
+          <span css={labelSpan}>Last Name:</span>
+          <span css={labelSpanValue}>{user.last_name}</span>
+        </div>
+        <div>
+          <span css={labelSpan}>Email:</span>
+          <span css={labelSpanValue}>{user.email}</span>
+        </div>
+      </DialogContent>
+      <DialogActions>
+        <Button type="button" onClick={onDismiss}>Close</Button>
+      </DialogActions>
     </Dialog>
   );
 }
