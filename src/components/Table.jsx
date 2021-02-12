@@ -1,6 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx } from '@emotion/react'
+import { jsx } from '@emotion/react';
+import * as colors from '../styles/colors';
 
 function Table({ children, className }) {
   return (
@@ -10,7 +11,7 @@ function Table({ children, className }) {
         {
           borderCollapse: 'separate',
           borderSpacing: 0,
-          border: '1px solid #e9e9e9',
+          border: `1px solid ${colors.tableBorder}`,
         },
       ]}
     >
@@ -33,10 +34,10 @@ function Tr({ children, className, ...props }) {
       className={className}
       css={{
         '&:nth-of-type(2n)': {
-          background: '#f0f0f0',
+          background: colors.tableRowEvenBackground,
         },
         '&:nth-of-type(2n+1)': {
-          background: '#ffffff',
+          background: colors.tableRowOddBackground,
         },
       }}
       {...props}
@@ -44,18 +45,22 @@ function Tr({ children, className, ...props }) {
   );
 }
 
+const commonCellStyle = {
+  borderRight: `1px solid ${colors.tableBorder}`,
+  borderBottom: `1px solid ${colors.tableBorder}`,
+  padding: '4px 24px',
+};
+
 function Th({ children, className }) {
   return (
     <th
       className={className}
       css={[
         {
-          background: '#4d4d4d',
-          borderRight: '1px solid #e9e9e9',
-          borderBottom: '1px solid #e9e9e9',
-          color: '#ffffff',
+          ...commonCellStyle,
+          background: colors.tableHeaderBackground,
+          color: colors.tableHeaderText,
           fontWeight: 'normal',
-          padding: '4px 24px',
           whiteSpace: 'nowrap',
         },
       ]}
@@ -68,11 +73,9 @@ function Td({ children, className }) {
     <td
       className={className}
       css={{
+        ...commonCellStyle,
         background: 'inherit',
-        borderRight: '1px solid #e9e9e9',
-        borderBottom: '1px solid #e9e9e9',
-        color: '#00994d',
-        padding: '4px 24px',
+        color: colors.primary,
         textAlign: 'center',
       }}
     >

@@ -3,6 +3,7 @@
 import { jsx } from '@emotion/react';
 import { Button } from '../../components/Button';
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '../../components/Dialog';
+import * as colors from '../../styles/colors';
 
 const labelSpan = {
   display: 'inline-block',
@@ -12,7 +13,7 @@ const labelSpan = {
 };
 
 const labelSpanValue = {
-  color: '#00994d',
+  color: colors.primary,
 };
 
 function UserDialog(props) {
