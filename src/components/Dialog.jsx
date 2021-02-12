@@ -2,10 +2,12 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react';
 import ReachDialog from '@reach/dialog';
+import useMedia from 'use-media';
 import '@reach/dialog/styles.css';
 
 function Dialog(props) {
-  return <ReachDialog {...props} style={{ padding: 0, borderRadius: '14px' }} />;
+  const isSmallDevice = useMedia({ maxWidth: 480 });
+  return <ReachDialog {...props} style={{ padding: 0, borderRadius: '14px', width: isSmallDevice ? '100%' : '50vw' }} />;
 }
 
 function DialogTitle({ children }) {
